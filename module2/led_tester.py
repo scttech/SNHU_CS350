@@ -1,3 +1,5 @@
+# A simple Raspberry Pi program to control an LED's brightness and blink frequency
+# using PWM on a GPIO pin. The user can adjust the frequency and duty cycle with the arrow keys
 import sys
 import time
 import select
