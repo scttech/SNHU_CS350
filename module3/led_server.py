@@ -1,61 +1,1 @@
-# This imports the Python serial package to handle communications over the
-# Raspberry Pi's serial port.
-import serial
-
-# Import the time package to allow us to add delays
-import time
-
-# Load the GPIO interface from the Raspberry Pi Python Module
-# The GPIO interface will be available through the GPIO object
-import RPi.GPIO as GPIO
-
-ser = serial.Serial(
-        port='/dev/ttyS0', # This command assumes that we are using the Raspberry
-                           # Pi's onboard serial port located at /dev/ttyS0.
-        baudrate = 115200, # This sets the speed of the serial interface in
-                           # bits/second
-        parity=serial.PARITY_NONE,      # Disable parity
-        stopbits=serial.STOPBITS_ONE,   # Serial protocol will use one stop bit
-        bytesize=serial.EIGHTBITS,      # We are using 8-bit bytes
-        timeout=1          # Configure a 1-second timeout
-)
-
-PIN = 18
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(PIN, GPIO.OUT)
-
-# Configure our loop variable
-repeat = True
-
-# Loop until the user hits CTRL-C or the client sends an exit/quit message
-
-# Read lines from the serial port 1 at a time.
-# This will block until we have data available.
-try:
-    while repeat:
-        # Read a line from the serial port.
-        command = ((ser.readline()).decode("utf-8")).lower()
-
-        # The underscore symbol '_' is used to represent the default case
-        # if nothing else matches in our list of cases.
-        match command:
-            case "blink":
-                GPIO.output(PIN, True)
-                time.sleep(0.5)
-                GPIO.output(PIN, False)
-                time.sleep(0.5)
-
-            case "quit":
-               repeat = False
-               print("Exiting LED server")
-
-            case _:
-                # No valid commands in the input so do nothing
-                pass
-
-except KeyboardInterrupt:
-    pass
-finally:
-    GPIO.output(PIN, False)
-    GPIO.cleanup()
+import timefrom enum import Enum, autoimport serialimport RPi.GPIO as GPIOPIN = 18SERIAL_PORT = "/dev/ttyS0"BAUD_RATE = 115200TIMEOUT_SEC = 1.0class LedState(Enum):    OFF = auto()    BLINK = auto()    QUIT = auto()def init_serial() -> serial.Serial:    return serial.Serial(        port=SERIAL_PORT,        baudrate=BAUD_RATE,        parity=serial.PARITY_NONE,        stopbits=serial.STOPBITS_ONE,        bytesize=serial.EIGHTBITS,        timeout=TIMEOUT_SEC,    )def init_gpio() -> None:    GPIO.setwarnings(False)    GPIO.setmode(GPIO.BCM)    GPIO.setup(PIN, GPIO.OUT)    GPIO.output(PIN, False)def handle_command(command: str, current_state: LedState) -> LedState:    """    Return the next state given a command string or the current state if the    command is unrecognized.    """    match command:        case "blink":            return LedState.BLINK        case "off":            return LedState.OFF        case "quit":            return LedState.QUIT        case _:            return current_statedef machine_state(state: LedState) -> None:    """Drive GPIO according to the current state."""    match state:        case LedState.BLINK:            GPIO.output(PIN, True)            time.sleep(0.5)            GPIO.output(PIN, False)            time.sleep(0.5)        case LedState.OFF:            GPIO.output(PIN, False)        case LedState.QUIT:            GPIO.output(PIN, False)def main() -> None:    init_gpio()    state = LedState.OFF    try:        with init_serial() as ser:            while state is not LedState.QUIT:                raw = ser.readline()                command = raw.decode("utf-8", errors="ignore").strip().lower()                state = handle_command(command, state)                machine_state(state)                if state is LedState.QUIT:                    print("Exiting LED server")    except KeyboardInterrupt:        pass    finally:        GPIO.output(PIN, False)        GPIO.cleanup()if __name__ == "__main__":    main()
