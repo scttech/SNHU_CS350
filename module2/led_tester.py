@@ -6,7 +6,6 @@ import select
 import termios
 import tty
 import os
-from io import UnsupportedOperation
 
 import RPi.GPIO as GPIO
 
