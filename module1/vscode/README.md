@@ -21,12 +21,14 @@ without the aid of a GUI and it is a safe bet that some form of `vi` will be ava
   <img src="../../images/module1/vscode/vscode_extensions.png" alt="Installed Extensions" width="400" />
   <figcaption><em>Figure 1: Installed extensions for VS Code</em></figcaption>
 </figure>
+
 3. Open the Command Palette (Ctrl+Shift+P) and select "Remote-SSH: Connect to Host...". In Figure 2 you can see that I already
 have a connection to my Raspberry Pi setup called `cs350lab`. I will be creating a new one to an older Raspberry Pi 3.  
 <figure>
   <img src="../../images/module1/vscode/add_new_ssh_host.png" alt="Add new SSH Host" width="400" />
   <figcaption><em>Figure 2: Add New SSH Host</em></figcaption>
 </figure>
+
 4. After selecting "Add New SSH Host...", you will be prompted to enter the SSH connection string. This typically looks like `ssh username@hostname`.
 In my case, the hostname is `cs350labpi3` and my username is `admin`, so I will enter `ssh admin@cs350labpi3`.
 5. You will then be prompted to select the SSH configuration file to update. Choose the default option, which is usually `~/.ssh/config`.
@@ -34,11 +36,13 @@ In my case, the hostname is `cs350labpi3` and my username is `admin`, so I will 
   <img src="../../images/module1/vscode/connection_string.png" alt="SSH Config" width="400" />
   <figcaption><em>Figure 3: SSH Configuration</em></figcaption>
 </figure>
+
 6. Then we can try connecting, and we will need to specify an Operating System
 <figure>
   <img src="../../images/module1/vscode/connecting_choose_host.png" alt="SSH OS" width="400" />
   <figcaption><em>Figure 4: SSH Operating System</em></figcaption>
 </figure>
+
 7. Then you will be prompted to enter the password for the user on the Raspberry Pi. 
 <figure>
     <img src="../../images/module1/vscode/add_password.png" alt="SSH Password" width="400" />
