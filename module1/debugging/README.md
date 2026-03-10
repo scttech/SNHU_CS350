@@ -76,5 +76,10 @@ Then V will change back to 0.
 
 Finally, after we perform the GPIO clean up you will see the mode change back to IN and V change back to 0.
 
+I have also provided a [shell script](../gpio-pininfo.sh) that provides formatted output for a single pin which can
+be useful for debugging purposes and might be a bit easier to read for a single pin.
+
+
+
 
 
