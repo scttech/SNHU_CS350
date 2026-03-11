@@ -70,7 +70,7 @@ Which produces output such as the below on my Raspberry Pi.
 
 You can look at this [sample code](../pin_18_debug.py) to see how the output from gpio changes while our code is running.
 
-You will set BCM Pin 18 set to mode OUT and V change from 0 to 1.  
+You will see BCM Pin 18 set to mode OUT and V change from 0 to 1.  
 
 Then V will change back to 0.
 
