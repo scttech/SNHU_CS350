@@ -4,6 +4,7 @@ import time
 
 import RPi.GPIO as GPIO
 
+# Adjust the GPIO pin number as needed
 GREEN_LED_PIN = 18
 RED_LED_PIN = 23
 YELLOW_LED_PIN = 24
