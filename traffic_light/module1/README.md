@@ -112,7 +112,7 @@ figure below.
 # Testing the circuit
 
 To test the circuit, we will use `led_tester.py` script. The script turns on any of our LEDs (we only have one for now) and then we
-when we exit the program it cleans up the GPIO pins which turns the LED off.
+when we exit the program, it cleans up the GPIO pins which turns the LED off.
 
 To run the script, first activate the virtual environment with the following command:
 
@@ -139,13 +139,13 @@ This error occurs when you try to run the script without root privileges. To fix
 
 Ensure the circuit is correctly built according to the instructions.
 
-Ensure you passed a parameter of GREEN, YELLOW, or RED to the script.  If you did not pass a parameter the script puts out a
+Ensure you passed a parameter of GREEN, YELLOW, or RED to the script.  If you do not pass a parameter, the script puts out a
 usage message and exits without turning on any LEDs.
 
 You should see the message:
 
 `Usage: led_tester.py [GREEN|RED|YELLOW]`
 
-Check to make sure teh LED is oriented correctly. The longer leg (anode) should be in Row 34 and Column F, and the 
+Check to make sure the LED is oriented correctly. The longer leg (anode) should be in Row 34 and Column F, and the 
 shorter leg (cathode) should be in Row 35 and Column F.
 
