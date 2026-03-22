@@ -68,9 +68,141 @@ command:
 
 We should see the green LED turn on.
 
+# Coding the state machine for the green light
+
+This code is based off the sample code from the `python-statemachine` library. You should be able to find the complete
+sample on their site [here](https://python-statemachine.readthedocs.io/en/latest/). However, in this project we will be
+taking it in smaller steps.
+
+Let us take a look at the `traffic_light_machine.py` that is in this module.  Below is the full listing, then we will
+break it down.
+
+```python
+from statemachine import StateChart, State
+
+class TrafficLightMachine(StateChart):
+    "A traffic light machine"
+    green = State(initial=True)
+    yellow = State()
+
+    cycle = (
+        green.to(yellow)
+        | yellow.to(green)
+    )
+
+    def before_cycle(self, event: str, source: State, target: State):
+        print(f"Running {event} from {source.id} to {target.id}")
+
+    def on_enter_green(self):
+        print("Green state entered.")
+
+    def on_exit_green(self):
+        print("Green state exited!")
+
+    def on_enter_yellow(self):
+        print("Yellow state entered.")
+
+    def on_exit_yellow(self):
+        print("Yellow state exited!")
+```
+
+## Imports
+
+We import `StateChart` and `State` from `statemachine` with the following line:
+
+```python
+from statemachine import StateChart, State
+```
+
+## Define a class
+
+We define a class named `TrafficLightMachine` with the following line:
+
+```python
+class TrafficLightMachine(StateChart):
+```
+
+## Defining states
+
+A state is a specific stable condition in our system.  Typically, a state machine can only be in one state at a time.  Think of 
+the possible states of "RUNNING" and "STOPPED".  We cannot be in both states at once. 
+
+In our `TrafficLightMachine` we have defined two states that represent whether the light is Green or Yellow.  We defined
+these with:
+
+```python
+green = State(initial=True)
+yellow = State()
+```
+
+In the above example, notice that we also defined the green state as the initial state.
+
+## State transitions
+
+We need the ability to move between states.  For instance, if we are "STOPPED" then we would certainly want a way to
+get into a "RUNNING" state.  
+
+The way we do this is with a transition.  By defining transitions, we can define the appropriate states that a state
+machine can move through. In our traffic light example, we want the "green" state to transition to "yellow".  It would
+be bad if the "green" state transitioned directly to "red" without allowing cars to slow down and stop.  
+
+We called our transition `cycle` and defined it as:
+
+```python
+cycle = (
+    green.to(yellow)
+    | yellow.to(green)
+)
+```
+
+Ignore for a moment that the yellow → green transition does not make sense for a traditional traffic light (we will
+address that later).
+
+We define two transitions.
+
+* Green to Yellow
+* Yellow to Green
+
+## State Actions
+
+A state action is a side effect that runs during a state change.
+
+We define several actions:
+
+```python
+def before_cycle(self, event: str, source: State, target: State):
+    print(f"Running {event} from {source.id} to {target.id}")
+
+def on_enter_green(self):
+    print("Green state entered.")
+
+def on_exit_green(self):
+    print("Green state exited!")
+
+def on_enter_yellow(self):
+    print("Yellow state entered.")
+
+def on_exit_yellow(self):
+    print("Yellow state exited!")
+```
+
+These should be self explanatory. The `on_enter_<state>` are called upon entering a state and `on_exit_<state>` are called
+when exiting. We also have a `before_<event>` which happens before the cycle event.
+
+# Running our state machine
+
+This module also has a simple script to make use of our state machine. The `traffic_light.py` script is shown below:
+
+```python
+from traffic_light_machine import TrafficLightMachine
 
 
+def main() -> None:
+    sm = TrafficLightMachine()
+    sm.send("cycle")
+    sm.send("cycle")
 
-
-
+if __name__ == "__main__":
+    main()
+```
 
