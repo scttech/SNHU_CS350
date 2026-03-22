@@ -206,3 +206,16 @@ if __name__ == "__main__":
     main()
 ```
 
+Running our script we get the following output.
+
+```
+Green state entered.
+Running cycle from green to yellow
+Green state exited!
+Yellow state entered.
+Running cycle from yellow to green
+Yellow state exited!
+Green state entered.
+```
+
+In the next [module](../module3/README.md) we'll look at further testing out state machine.

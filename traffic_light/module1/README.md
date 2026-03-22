@@ -35,64 +35,79 @@ Then, we will install the `RPi` library with the following command:
 Place the breakout board on the breadboard as shown in the figure below.  The first pin is aligned with the first
 row of the breadboard.
 
+
 <figure>
   <img src="../images/common/breakout_board.jpg" alt="Breakout board placement" width="400" />
-  <figcaption>Figure 1: Breakout board placement</figcaption>
+  <figcaption><em>Figure 1: Breakout board placement</em></figcaption>
 </figure>
 
 
 Place the yellow wire in GPIO pin 18 (__Row 6__ and __Column H__ on the breadboard) as shown in the figure below.
 
+
 <figure>
   <img src="../images/module1/1_yellow_pin18.jpg" alt="Yellow Wire to pin 18" width="400" />
-  <figcaption>Figure 2: Yellow wire to pin 18</figcaption>
+  <figcaption><em>Figure 2: Yellow wire to pin 18</em></figcaption>
 </figure>
+
 
 We then place the yellow wire from __Row 6__ and __Column H__ to __Row 30__ and __Column J__ as shown in the
 figure below.
 
+
 <figure>
   <img src="../images/module1/2_yellow_board30.jpg" alt="Yellow Wire to pin 18" width="400" />
-  <figcaption>Figure 3: Yellow wire to pin 18</figcaption>
+  <figcaption><em>Figure 3: Yellow wire to pin 18</em></figcaption>
 </figure>
+
 
 The 220-ohm resistor
 
+
 <figure>
   <img src="../images/module1/3_220ohm_resistor.jpg" alt="220 Ohm Resistor" width="400" />
-  <figcaption>Figure 4: 220ohm resistor</figcaption>
+  <figcaption><em>Figure 4: 220ohm resistor</em></figcaption>
 </figure>
+
 
 Place the 220-ohm resistor from __Row 30__ and __Column H__ to __Row 34__ and __Column H__ as shown in 
 the figure below.
 
+
 <figure>
   <img src="../images/module1/4_resistor_placement.jpg" alt="Resistor placement" width="400" />
-  <figcaption>Figure 5: Resistor placement</figcaption>
+  <figcaption><em>Figure 5: Resistor placement</em></figcaption>
 </figure>
+
 
 Place the green LED so that the longer leg (anode) is in __Row 34__ and __Column F__ and the shorter leg (cathode)
 is in __Row 35__ and __Column F__ as shown in the figure below.
 
+
 <figure>
   <img src="../images/module1/5_led_placement.jpg" alt="Green LED placement" width="400" />
-  <figcaption>Figure 6: Green LED placement</figcaption>
+  <figcaption><em>Figure 6: Green LED placement</em></figcaption>
 </figure>
+
 
 Place the white wire in __Row 35__ and __Column J__ as shown in the figure below.
 
+
 <figure>
   <img src="../images/module1/6_white_board35.jpg" alt="White wire on breadboard" width="400" />
-  <figcaption><em>Figure 7: White wire in Row 35</figcaption>
+  <figcaption><em>Figure 7: White wire in Row 35</em></figcaption>
 </figure>
+
 
 Place the white wire from __Row 35__ and __Column J__ to the ground pin on the breakout board as shown in the
 figure below.
 
+
 <figure>
   <img src="../images/module1/7_white_gnd.jpg" alt="White wire to ground" width="400" />
-  <figcaption><em>Figure 8: White wire to ground (GND)</figcaption>
+  <figcaption><em>Figure 8: White wire to ground (GND)</em></figcaption>
 </figure>
+
 
 # Testing the circuit
 
@@ -106,6 +121,11 @@ To run the script, first activate the virtual environment with the following com
 Then, run the script with the following command:
 
 `sudo python3 led_tester.py GREEN`
+
+You should see the LED turn on. 
+
+In the next [module](../module2/README.md) we will look at the initial coding of the 
+state machine for the traffic light.
 
 # Troubleshooting
 
