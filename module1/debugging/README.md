@@ -11,7 +11,7 @@ This can be very useful for debugging purposes, as it allows us to test our circ
 
 The original `wiringpi` project is no longer maintained, so we unfortunately cannot simply use `sudo apt-get install wiringpi` to install it.
 
-Instead, we will get the project from GitHub and install it manaully.
+Instead, we will get the project from GitHub and install it manually.
 
 ```bash
 git clone https://github.com/WiringPi/WiringPi.git
