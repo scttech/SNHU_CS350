@@ -247,3 +247,8 @@ Which produces output such as the below on my Raspberry Pi.
  +-----+-----+---------+------+---+---Pi 3B--+---+------+---------+-----+-----+
 ```
 
+# Conclusion
+
+We have explored some possibilities for testing both the software and the hardware we are developing.
+
+In the next [module](../module4/README.md) we will expand our circuit to include the additional LEDs.

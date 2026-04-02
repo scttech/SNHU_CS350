@@ -65,7 +65,7 @@ The 220-ohm resistor
 
 
 <figure>
-  <img src="../images/module1/3_220ohm_resistor.jpg" alt="220 Ohm Resistor" width="400" />
+  <img src="../images/common/220ohm_resistor.jpg" alt="220 Ohm Resistor" width="400" />
   <figcaption><em>Figure 4: 220ohm resistor</em></figcaption>
 </figure>
 
