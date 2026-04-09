@@ -1,4 +1,4 @@
-# Traffic Light Project
+# Thermostat Project
 
 <img src="./images/common/thermostat.png" alt="Thermostat" width="200" />
 
