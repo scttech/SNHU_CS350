@@ -73,3 +73,75 @@ Another angle of the gray wire connected to GND
   <img src="../images/module5/7_grey_wire_to_row15_angle2.jpg" alt="gray wire, angle 2" width="400" />
   <figcaption><em>Figure 9: Gray wire, angle 2</em></figcaption>
 </figure>
+
+# Testing the red LED
+
+As we saw in the previous module, we have a few options for testing the LED.
+
+## Run the led_tester.py code
+
+First we can run the `led_tester.py` program from module 1 
+
+`sudo python3 led_tester.py RED`
+
+We should see the following output
+
+`RED LED ON (pin 23). Press Ctrl+C to exit.`
+
+And probably more importantly, we will see the red LED lighting up.
+
+## Use the gpio command
+
+We can also use the `gpio` command
+
+First set pin 23 to be output with
+
+`sudo gpio -g mode 23 out`
+
+Then toggle pin 23 
+
+`sudo gpio -g toggle 23`
+
+Then we can read the pins with
+
+`sudo gpio readall`
+
+And see the following output
+
+```
+ +-----+-----+---------+------+---+---Pi 3B--+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+                                       || 16 | 1 | OUT  | GPIO. 4 | 4   | 23  |
+```
+
+## Use the gpio-pininfo.sh
+
+We also have the `gpio-pininfo.sh` which wraps the `gpio` command
+
+We run
+
+`sudo ./gpio-pininfo.sh 23`
+
+And receive the output
+
+```
+GPIO Diagnostic
+---------------------------
+BCM Pin:       23
+wPi Pin:       4
+Physical Pin:  16
+Name:          GPIO. 4
+Mode:          OUT
+Value:         HIGH (1)
+```
+
+# Wrap up
+
+We should have now confirmed that our LEDs are all working.
+
+In the next module, we will update our state machine so that we can cycle through the states and turn each LED on and off
+so that we can begin to mimic a working traffic light.
+
+
+
