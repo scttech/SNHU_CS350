@@ -140,7 +140,7 @@ Value:         HIGH (1)
 
 We should have now confirmed that our LEDs are all working.
 
-In the next module, we will update our state machine so that we can cycle through the states and turn each LED on and off
+In the next [module](../module6/README.md), we will update our state machine so that we can cycle through the states and turn each LED on and off
 so that we can begin to mimic a working traffic light.
 
 
