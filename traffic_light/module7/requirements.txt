@@ -1,0 +1,5 @@
+RPi.GPIO
+python-statemachine[diagrams]
+gpiozero
+graphviz
+pytest

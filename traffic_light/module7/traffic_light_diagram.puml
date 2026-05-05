@@ -1,0 +1,36 @@
+@startuml Traffic Light State Machine
+
+skinparam state {
+    BackgroundColor<<red>>    red
+    BorderColor<<red>>        red
+    FontColor<<red>>          white
+    BackgroundColor<<yellow>> yellow
+    BorderColor<<yellow>>     yellow
+    FontColor<<yellow>>       black
+    BackgroundColor<<green>>  green
+    BorderColor<<green>>      green
+    FontColor<<green>>        white
+}
+
+[*] --> red : initial
+
+state red <<red>> {
+    on_enter_red :
+    on_exit_red :
+}
+
+state green <<green>> {
+    on_enter_green :
+    on_exit_green :
+}
+
+state yellow <<yellow>> {
+    on_enter_yellow :
+    on_exit_yellow :
+}
+
+red    --> green  : cycle
+green  --> yellow : cycle
+yellow --> red    : cycle
+
+@enduml
