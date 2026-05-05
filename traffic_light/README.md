@@ -15,5 +15,5 @@ and of state machines
 * [Module 5](./module5/README.md) goes through setting up the red LED
 * [Module 6](./module6/README.md) expands on the state machine setup in Module 2
 * [Module 7](./module7/README.md) creating state diagrams
-* [Module 7](./module7/README.md) introduces Docker
-* [Module 8](./module8/README.md) setting up the MQTT server in Docker
+* [Module 8](./module7/README.md) introduces Docker
+* [Module 9](./module8/README.md) setting up the MQTT server in Docker
