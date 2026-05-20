@@ -1,0 +1,82 @@
+@startuml MQTT Interaction
+
+skinparam sequenceArrowThickness 1.5
+skinparam roundcorner 8
+skinparam guillemet false
+title "Sequence Diagram for MQTT"
+hide stereotype
+
+skinparam participant {
+    BackgroundColor<<producer>> #F0997B
+    BorderColor<<producer>>     #993C1D
+    FontColor<<producer>>       #4A1B0C
+
+    BackgroundColor<<broker>>   #AFA9EC
+    BorderColor<<broker>>       #534AB7
+    FontColor<<broker>>         #26215C
+
+    BackgroundColor<<consumer>> #5DCAA5
+    BorderColor<<consumer>>     #0F6E56
+    FontColor<<consumer>>       #04342C
+}
+
+participant "Producer\n(Traffic Light)"    as P  <<producer>>
+participant "Broker\n(Mosquitto MQTT)"     as B  <<broker>>
+participant "Consumer A\n(Database)"       as CA <<consumer>>
+participant "Consumer B\n(Dashboard)"      as CB <<consumer>>
+
+== Connection ==
+
+P  -[#993C1D]>  B  : CONNECT
+note left
+Connect to the broker
+end note
+B  -[#26215C]-> P  : CONNACK
+CA -[#0F6E56]>  B  : CONNECT
+note right
+Database daemon connects to
+broker
+end note
+B  -[#26215C]-> CA : CONNACK
+CB -[#0F6E56]>  B  : CONNECT
+note left
+Dashboard connects to broker
+end note
+B  -[#26215C]-> CB : CONNACK
+
+== Subscribe ==
+
+CA -[#0F6E56]>  B  : SUBSCRIBE
+note left
+Subscribe to the traffic light topic
+end note
+B  -[#26215C]-> CA : SUBACK
+CB -[#0F6E56]>  B  : SUBSCRIBE
+note left
+Subscribe to the traffic light topic
+end note
+
+B  -[#26215C]-> CB : SUBACK
+
+== Publish ==
+
+P  -[#993C1D]>  B  : PUBLISH
+note left
+Publish state change events
+to broker
+end note
+B  -[#26215C]-> P  : PUBACK
+B  -[#26215C]>  CA : PUBLISH
+note left
+state change events are publish
+to database
+end note
+CA -[#0F6E56]-> B  : PUBACK
+B  -[#26215C]>  CB : PUBLISH
+note left
+state change events are publish
+to dashboard
+end note
+CB -[#0F6E56]-> B  : PUBACK
+
+@enduml
