@@ -232,3 +232,28 @@ Then we can check to see if the data is there
 ```shell
   docker exec traffic-db psql -U postgres -d traffic_light -c "SELECT * FROM traffic_state_history;"
 ```
+
+# Putting it all together
+
+At this point we should have the following:
+
+* Docker
+  * Postgres Database - For storing our events
+  * MQTT Broker - Mosquitto MQTT broker for managing subscriptions and messages
+  * MQTT Logger - Capturing published state changes
+* Raspberry Pi running the traffic light
+
+Our available ports should look like
+
+| Port | Protocol             | Purpose                             |
+|------|----------------------|-------------------------------------|
+| 1883 | MQTT (TCP)           | Python client connections           |
+| 9001 | MQTT over WebSockets | Browser-based clients / dashboards  |
+| 5432 | TCP                  | Postgress                           | 
+
+# Conclusion
+
+We are now executing our traffic light system and capturing the state change events.
+
+In the new [module](../module11/README.md) we will add a dashboard so that we can monitor state changes in real time
+and look at historical state data from the database.
