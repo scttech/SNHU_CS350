@@ -17,3 +17,4 @@ and of state machines
 * [Module 7](./module7/README.md) creating state diagrams
 * [Module 8](./module8/README.md) introduces Docker
 * [Module 9](./module9/README.md) setting up the MQTT server in Docker
+* [Module 10](./module10/README.md) storing our data in a Postgres database
