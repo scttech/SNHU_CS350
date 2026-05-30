@@ -11,6 +11,31 @@ Please follow the wiring instructions both here and in the actual lab document c
 
 # LCD 16x2 Setup
 
+To give a high level overview of how we will be setting up the LCD screen, take a look at the below table.  The pin
+refers to the pin on the LCD board (and not the breakout board).  It might be helpful to refer to the table if your wiring does not
+work the first time because your board may not be positioned correctly (or the detailed instructions could be wrong)
+
+| Pin | Label   | To                     |
+|-----|---------|------------------------|
+| 1   | VSS/GND | GND                    |
+| 2   | VDD     | 5V                     |
+| 3   | V0      | potentiometer (center) | 
+| 4   | RS      | GPIO 17                | 
+| 5   | RW      | GND                    | 
+| 6   | E       | GPIO 27                | 
+| 7   | D0      | unused                 | 
+| 8   | D1      | unused                 | 
+| 9   | D2      | unused                 | 
+| 10  | D3      | unused                 | 
+| 11  | D4      | GPIO 5                 | 
+| 12  | D5      | GPIO 6                 | 
+| 13  | D6      | GPIO 13                | 
+| 14  | D7      | GPIO 26                | 
+| 15  | A/BLA   | 5V                     | 
+| 16  | K/BLK   | GND                    | 
+
+Now on to the detailed instructions.
+
 Place the potentiometer on the breadboard as shown in Figure 1.
 
 It should span __Row 45__ through __Row 47__, and __Column G__ through __Column J__.  We will need the potentiometer to adjust the contrast of the LCD display 
@@ -110,7 +135,7 @@ Now, we make some connections to the +5V on the breadboard.
 
 Now we make the remaining connections needed for the LCD display as shown in Figures 14, 15, 16, and 17.
 
-* Red wire from GPIO 17 (__Row 7__) to Pin 15 of the LCD display (A) located in __Row 61__
+* Red wire from GPIO 17 (__Row 7__) to Pin 4 of the LCD display (RS) located in __Row 61__
 * Orange wire from GPIO 27 (__Row 8__) to Pin 6 of the LCD display (E) located in __Row 50__
 * Black wire from GPIO 5 (__Row 16__) to Pin 11 of the LCD display (D4) located in __Row 56__
 * Gray wire from GPIO 6 (__Row 17__) to Pin 12 of the LCD display (D5) located in __Row 57__
