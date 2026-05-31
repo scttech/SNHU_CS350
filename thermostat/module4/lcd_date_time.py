@@ -33,8 +33,8 @@ while repeat:
         ## Sleep until the next whole second to prevent clock drift
         time.sleep(1 - (time.time() % 1))
 
-        ## To see the clock drift use instead of the above sleep, when the microseconds (us) gets near
-        ## 999999 you will see the second display skip
+        ## To see the clock drift use time.sleep(1) instead of the above sleep, when the microseconds (us) nears
+        ## 999999 microseconds you will see the second display skip
         # time.sleep(1)
     except KeyboardInterrupt:
         repeat = False
