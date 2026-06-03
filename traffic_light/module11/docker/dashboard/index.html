@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Dashboard</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<header>
+    <h1>Traffic Light Dashboard</h1>
+    <span class="badge badge-connecting" id="mqtt-badge">MQTT: Connecting</span>
+</header>
+
+<div class="layout">
+
+    <div class="card light-card">
+        <div class="card-title">Live State</div>
+        <svg id="traffic-light-svg" width="160" height="290"></svg>
+        <div class="state-display">
+            <div class="state-name" id="state-name">--</div>
+            <div class="state-ts"   id="state-ts">Waiting for data…</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">State Timeline</div>
+        <div class="chart-wrap" id="timeline-wrap"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">State Counts</div>
+        <div class="chart-wrap" id="stats-wrap"></div>
+    </div>
+
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/mqtt@5.15.1/dist/mqtt.min.js" integrity="sha384-yYo6Rf8oE1ymBEWidpn7Brg0E6BGJiencXj3K2GmcU9dlFZ1fIhEqimYrhQij0r0" crossorigin="anonymous"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -19,3 +19,4 @@ and of state machines
 * [Module 9](./module9/README.md) setting up the MQTT server in Docker
 * [Module 10](./module10/README.md) storing our data in a Postgres database
 * [Module 11](./module11/README.md) building a dashboard with Javascript
+* [Module 12](./module12/README.md) cleanup and final thoughts

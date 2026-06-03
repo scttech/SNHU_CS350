@@ -1,0 +1,66 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt-broker
+    ports:
+      - "1883:1883"   # MQTT
+      - "9001:9001"   # MQTT over WebSockets (for browser clients)
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:latest
+    container_name: traffic-db
+    environment:
+      POSTGRES_DB: traffic_light
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432" # Standard Postgres Port
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./postgres:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  mqtt-logger:
+    build: ./mqtt_logger
+    container_name: mqtt-logger
+    environment:
+      MQTT_HOST: mosquitto
+      DB_HOST: postgres
+      DB_NAME: traffic_light
+      DB_USER: postgres
+      DB_PASS: postgres
+    depends_on:
+      - mosquitto
+      - postgres
+    restart: unless-stopped
+
+  api:
+    build: ./api
+    container_name: traffic-api
+    environment:
+      DB_HOST: postgres
+      DB_NAME: traffic_light
+      DB_USER: postgres
+      DB_PASS: postgres
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  dashboard:
+    image: nginx:alpine
+    container_name: traffic-dashboard
+    ports:
+      - "80:80" # Standard HTTP port
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./dashboard:/usr/share/nginx/html
+    depends_on:
+      - api
+      - mosquitto
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
