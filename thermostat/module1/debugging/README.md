@@ -7,7 +7,9 @@ if our circuit is working by bypassing the Python code.
 There is a nice community project called `wiringpi` that allows us to control the GPIO pins directly from the terminal. 
 This can be very useful for debugging purposes, as it allows us to test our circuit without having to run our Python code.
 
-## Prerequisites
+## Wiring Pi
+
+### Prerequisites
 
 The original `wiringpi` project is no longer maintained, so we unfortunately cannot simply use `sudo apt-get install wiringpi` to install it.
 
@@ -21,7 +23,7 @@ cd WiringPi
 
 Once that completes, we should now have access to the `gpio` command. Note that you will have to use `sudo` to run the command.
 
-## Testing the LED
+### Testing the LED
 
 Assuming we have setup our LED on GPIO pin 18, we can test it by running the following command
 
@@ -79,6 +81,20 @@ Finally, after we perform the GPIO clean up you will see the mode change back to
 I have also provided a [shell script](../gpio-pininfo.sh) that provides formatted output for a single pin which can
 be useful for debugging purposes and might be a bit easier to read for a single pin.
 
+## Pin Tester
+
+I have also created a simple program [pin_tester.py](../pin_tester.py) which can be used to "turn on" a specified pin.
+
+Below would turn on Pin 18.
+
+```shell
+sudo python3 pin_tester.py 18
+```
+
+If we combine this simple script with wiring an LED (or using the Wiring Pi above) we can validate that the cables,
+wiring, and breadboard are working.
+
+This is just meant as another way to help debug issues that we might encounter.
 
 
 
