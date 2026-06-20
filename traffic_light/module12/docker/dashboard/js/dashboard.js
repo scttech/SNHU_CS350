@@ -252,7 +252,7 @@ function setBadge(cls, text) {
 // Connect to Mosquitto's WebSocket listener on port 9001.
 // window.location.hostname resolves correctly whether running on
 // localhost or on a remote host such as a Raspberry Pi.
-const mqttClient = mqtt.connect(`ws://${window.location.hostname}:9001`, {
+const mqttClient = mqtt.connect(`ws://${globalThis.location.hostname}:9001`, {
     clientId: `dashboard_${Math.random().toString(16).slice(2, 8)}`,
     reconnectPeriod: 3000,
     connectTimeout: 5000,
@@ -266,7 +266,7 @@ mqttClient.on('reconnect', () => setBadge('badge-connecting', 'Reconnecting'));
 mqttClient.on('error',     () => setBadge('badge-disconnected', 'Error'));
 mqttClient.on('close',     () => setBadge('badge-connecting', 'Reconnecting'));
 
-mqttClient.on('message', (topic, msg) => {
+mqttClient.on('message', async (topic, msg) => {
     try {
         const { state, timestamp } = JSON.parse(msg.toString());
         const record = { state, timestamp: timestamp || new Date().toISOString() };
@@ -276,16 +276,16 @@ mqttClient.on('message', (topic, msg) => {
 
         setLight(state);
         renderTimeline();
-        loadStats();
+        await loadStats();
     } catch (e) {
         console.error('MQTT message error:', e);
     }
 });
 
 
-// ── Initialise ────────────────────────────────────────────────────────────────
-loadHistory();
-loadStats();
+// -- Initialise -----------------------------------------------------
+await loadHistory();
+await loadStats();
 
 // Refresh historical data every 30 seconds as a fallback
-setInterval(() => { loadHistory(); loadStats(); }, 30_000);
+setInterval(async () => { await loadHistory(); await loadStats(); }, 30_000);

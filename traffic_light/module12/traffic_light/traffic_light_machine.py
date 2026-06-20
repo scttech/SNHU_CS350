@@ -31,6 +31,7 @@ class TrafficLightMachine(StateChart):
         else:
             self._mqtt = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
             try:
+                print(f"Connection to {mqtt_host}:{mqtt_port}")
                 self._mqtt.connect(mqtt_host, mqtt_port)
                 self._mqtt.loop_start()
             except Exception as e:

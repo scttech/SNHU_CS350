@@ -25,13 +25,19 @@ def main() -> None:
         metavar="OUTPUT_PATH",
         help="Generate a state diagram PNG (default output is : CURRENT_DIRECTORY/traffic_light_diagram.png)",
     )
+    parser.add_argument(
+        "--mqtt-host",
+        default="localhost",
+        metavar="HOST",
+        help="Hostname or IP of the MQTT broker (default: localhost)",
+    )
     args = parser.parse_args()
 
     if args.diagram is not None:
         generate_diagram(args.diagram)
         return
 
-    sm = TrafficLightMachine(mqtt_host="")
+    sm = TrafficLightMachine(mqtt_host=args.mqtt_host)
     try:
         while True:
             sm.send("cycle")

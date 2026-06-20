@@ -9,7 +9,7 @@ DB_CONFIG = {
     'port':     int(os.getenv('DB_PORT',  5432)),
     'dbname':   os.getenv('DB_NAME',  'traffic_light'),
     'user':     os.getenv('DB_USER',  'postgres'),
-    'password': os.getenv('DB_PASS',  'postgres'),
+    'password': os.getenv('DB_PASS'),
 }
 
 
@@ -23,12 +23,12 @@ def cors(response):
     return response
 
 
-@app.route('/health')
+@app.route('/health', methods=['GET'])
 def health():
     return jsonify({'status': 'ok'})
 
 
-@app.route('/history')
+@app.route('/history', methods=['GET'])
 def history():
     limit = min(request.args.get('limit', 100, type=int), 500)
     try:
@@ -51,7 +51,7 @@ def history():
         return jsonify({'error': str(e)}), 503
 
 
-@app.route('/stats')
+@app.route('/stats', methods=['GET'])
 def stats():
     try:
         conn = get_conn()
