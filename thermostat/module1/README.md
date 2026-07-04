@@ -5,6 +5,7 @@ This week is all about setup of our development environment.
 There are some guides to help you with that:
 
 * [Setting up the QWIIC Shim](./shim/README.md)
+* [OS Install](./os_install/README.md)
 * [Connecting VS Code to the Raspberry Pi](./vscode/README.md)
 * [LED Wiring](./led/README.md)
 
