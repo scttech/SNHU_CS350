@@ -52,11 +52,11 @@ The lab instructions should be sufficient for the wiring in
 this week's module.  However, here are some additional pictures just in case
 you need them.
 
-The purple wire is in __Row 5__ and connected to the TXD pin.
+The purple wire is in __Row 5__, __Column H__ and connected to the TXD pin.
 
-The gray wire is in __Row 6__ and connected to the RXD pin.
+The gray wire is in __Row 6__, __Column H__ and connected to the RXD pin.
 
-The blue wire is in __Row 4__ and connected to GND.
+The blue wire is in __Row 4__, __Column I__ and connected to GND.
 
 <figure>
   <img src="../images/module3/gpio_angle_1.jpg" alt="GPIO Angle 1" width="400" />
